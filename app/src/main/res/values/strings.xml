@@ -1,0 +1,137 @@
+<resources>
+    <string name="app_name">Everyday Wallpaper</string>
+    <string name="openDrawer">Navigation</string>
+    <string name="closeDrawer">Close Navigation</string>
+    <string name="OtherList">Other</string>
+
+    <string name="settingsDaily">Daily</string>
+    <string name="settingsBing">Bing</string>
+    <string name="settingsPictures">Pictures</string>
+    <string name="settingsStorage">Storage</string>
+    <string name="settingsTheme">Theme</string>
+    <string name="settingsTranslation">Translation</string>
+
+    <string name="WallpaperPopup">What would you like to do with this image?</string>
+    <string name="PopupSetWallpaper">SET AS WALLPAPER</string>
+    <string name="PopupDownloadWallpaper">DOWNLOAD</string>
+
+    <string-array name="drawer_items">
+        <item>Wallpapers</item>
+        <item>Settings</item>
+        <item>Support</item>
+    </string-array>
+
+    <string-array name="drawer_items_below">
+        <item>Share</item>
+        <item>Contact</item>
+        <item>About</item>
+        <item>Remove Ads</item>
+    </string-array>
+
+    <integer-array name="drawer_icons">
+        <item>@drawable/icon_wallpaper</item>
+        <item>@drawable/icon_settings</item>
+        <item>@drawable/icon_support</item>
+    </integer-array>
+
+    <integer-array name="drawer_icons_below">
+        <item>@drawable/icon_share</item>
+        <item>@drawable/icon_contact</item>
+        <item>@drawable/icon_about</item>
+        <item>@drawable/icon_remove_ads</item>
+    </integer-array>
+
+    <string-array name="settings_daily_headers">
+        <item>Change wallpaper automatically</item>
+        <item>Change time</item>
+        <item>Save picture</item>
+    </string-array>
+
+    <string-array name="settings_daily_contents">
+        <item>Change your wallpaper daily without any user interaction</item>
+        <item>Choose the time your wallpaper will be automatically changed (default is 10:00AM)</item>
+        <item>As well as changing your wallpaper, the picture will be saved on your device</item>
+    </string-array>
+
+    <integer-array name="settings_daily_types">
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+
+    <string-array name="settings_bing_headers">
+        <item>Location</item>
+        <item>Only today</item>
+        <item>Tomorrow</item>
+    </string-array>
+
+    <string-array name="settings_bing_contents">
+        <item>Select a location to see Bing pictures from that country</item>
+        <item>Only show today\'s picture instead of the current week\'s</item>
+        <item>Also show tomorrow\'s picture, for curious people ;)</item>
+    </string-array>
+
+    <integer-array name="settings_bing_types">
+        <item>0</item>
+        <item>1</item>
+        <item>1</item>
+    </integer-array>
+
+    <string-array name="settings_pictures_headers">
+        <item>Only Wi-Fi</item>
+        <item>Wallpaper</item>
+        <item>Saved picture</item>
+        <item>Crop picture manually</item>
+    </string-array>
+
+    <string-array name="settings_pictures_contents">
+        <item>The app will use only the Wi-Fi connection to download and set as wallpaper</item>
+        <item>Select the wallpaper resolution (default is 1920 x 1080)</item>
+        <item>Select the resolution of saved pictures (default is 1920 x 1080)</item>
+        <item>Enabled by default, you crop by yourself picture. Disable it to let the app automatically crops your picture</item>
+    </string-array>
+
+    <integer-array name="settings_pictures_types">
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+
+    <string-array name="settings_storage_headers">
+        <item>Folder</item>
+    </string-array>
+
+    <string-array name="settings_storage_contents">
+        <item>Choose the folder where pictures are saved on your device</item>
+    </string-array>
+
+    <integer-array name="settings_storage_types">
+        <item>0</item>
+    </integer-array>
+
+    <string-array name="settings_theme_headers">
+        <item>Dark theme</item>
+    </string-array>
+
+    <string-array name="settings_theme_contents">
+        <item>Switch to the dark side</item>
+    </string-array>
+
+    <integer-array name="settings_theme_types">
+        <item>1</item>
+    </integer-array>
+
+    <string-array name="settings_translation_headers">
+        <item>Translate the app</item>
+    </string-array>
+
+    <string-array name="settings_translation_contents">
+        <item>Participate to the translation of the application in your language by clicking here, thank you for your help</item>
+    </string-array>
+
+    <integer-array name="settings_translation_types">
+        <item>0</item>
+    </integer-array>
+
+</resources>
