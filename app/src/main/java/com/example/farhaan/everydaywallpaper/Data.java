@@ -11,4 +11,7 @@ public class Data {
     public static List<String> pictureLinks = new ArrayList<String>();
     public static List<String> dates = new ArrayList<String>();
     public static List<String> pictureDescriptions = new ArrayList<String>();
+    public static int changeHour = 0;
+    public static int changeMinute = 0;
+    public static int savePicture = 0;
 }

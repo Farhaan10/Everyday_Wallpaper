@@ -65,6 +65,7 @@ public class SettingsAdapter extends ArrayAdapter<String>{
         } else {
             rowView = inflater.inflate(R.layout.settings_list_button, null, true);
             aSwitch[position] = (Switch) rowView.findViewById(R.id.mySwitch);
+            aSwitch[position].setClickable(false);
             /*rowView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

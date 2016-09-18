@@ -1,26 +1,33 @@
 package com.example.farhaan.everydaywallpaper;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.WallpaperManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.TimePicker;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Calendar;
 
 /**
  * Created by Farhaan on 27-08-2016.
@@ -34,11 +41,17 @@ public class Settings extends Fragment{
     LinearLayout settings_layout;
     WallpaperManager wallpaperManager;
     PopupWindow popupWindow;
+    private AlarmManager alarmMgr;
+    private PendingIntent alarmIntent;
+    Alarm alarm;
+    Bundle tempBundle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
         settings_layout = (LinearLayout) view.findViewById(R.id.settings_layout);
+        tempBundle = savedInstanceState;
+        alarm = new Alarm();
         //settings_layout.bringToFront();
         //********temporary
         //Data.pictureLinks.add(0, "/az/hprichbg/rb/MoscowSkyline_EN-IN10373876477");
@@ -137,27 +150,61 @@ public class Settings extends Fragment{
                 adapter_daily.toggleSwitch(position);
                 if (!switchStatus) {
                     System.out.println("Switch on");
-                    adapter_daily.disableItem(1);
-                    adapter_daily.disableItem(2);
+                    adapter_daily.enableItem(1);
+                    adapter_daily.enableItem(2);
                     daily.getChildAt(1).setEnabled(false);
                     daily.getChildAt(2).setEnabled(false);
+                    daily.getChildAt(1).setClickable(false);
+                    daily.getChildAt(2).setClickable(false);
                     wallpaperManager = WallpaperManager.getInstance(getActivity().getApplicationContext());
                     try{
                         new DownloadImageTask(wallpaperManager).execute("http://bing.com" + Data.pictureLinks.get(0) +"_1920x1080.jpg");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    alarm.setAlarm(getContext());
                 } else {
                     System.out.println("Switch off");
-                    adapter_daily.enableItem(1);
-                    adapter_daily.enableItem(2);
+                    adapter_daily.disableItem(1);
+                    adapter_daily.disableItem(2);
                     daily.getChildAt(1).setEnabled(true);
                     daily.getChildAt(2).setEnabled(true);
+                    daily.getChildAt(1).setClickable(true);
+                    daily.getChildAt(2).setClickable(true);
+                    alarm.cancelAlarm(getContext());
                 }
             } else if(position == 1) {
-                popupWindow = new PopupWindow(getContext());
+                showTimePicker(view);
+            } else if (position == 2){
+                boolean saveSwitchStatus = adapter_daily.switchStatus(position);
+                adapter_daily.toggleSwitch(position);
+                if(!saveSwitchStatus){
+                    Data.savePicture = 1;
+                } else {
+                    Data.savePicture = 0;
+                }
             }
         }
+    }
+
+    public void showTimePicker(View pickerView) {
+        View popupView = getLayoutInflater(tempBundle).inflate(R.layout.popup_wallpaper, null);
+        final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.setFocusable(true);
+        popupWindow.setBackgroundDrawable(new ColorDrawable());
+        popupWindow.showAtLocation(pickerView, Gravity.CENTER, 0, 0);
+        final TimePicker timePicker= (TimePicker) popupView.findViewById(R.id.timePicker);
+        Button save = (Button) popupView.findViewById(R.id.save);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Data.changeHour = timePicker.getCurrentHour();
+                Data.changeMinute = timePicker.getCurrentMinute();
+                popupWindow.dismiss();
+                alarm.cancelAlarm(getContext());
+                alarm.setAlarm(getContext());
+            }
+        });
     }
 
     /*private class LVscroll implements ListView.OnTouchListener {
